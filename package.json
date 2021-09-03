@@ -25,16 +25,15 @@
     "url": "https://github.com/kelektiv/node.bcrypt.js/issues"
   },
   "scripts": {
-    "test": "npm install --build-from-source && nodeunit test",
-    "install": "node-pre-gyp install --fallback-to-build"
+    "test": "npx nodeunit test/*.js",
+    "install": "node-gyp-build",
+    "build": "prebuildify --napi"
   },
   "dependencies": {
-    "@mapbox/node-pre-gyp": "^1.0.2",
-    "node-addon-api": "^3.1.0"
+    "node-addon-api": "^3.1.0",
+    "node-gyp-build": "^4.2.3"
   },
-  "devDependencies": {
-    "nodeunit": "^0.11.3"
-  },
+  "devDependencies": {},
   "contributors": [
     "Antonio Salazar Cardozo <savedfastcool@gmail.com> (https://github.com/Shadowfiend)",
     "Van Nguyen <the.gol.effect@gmail.com> (https://github.com/thegoleffect)",
@@ -53,15 +52,5 @@
     "Amitosh Swain Mahapatra <amitosh.swain@gmail.com> (https://github.com/Agathver)",
     "Corbin Crutchley <crutchcorn@gmail.com> (https://github.com/crutchcorn)",
     "Nicola Del Gobbo <nicoladelgobbo@gmail.com> (https://github.com/NickNaso)"
-  ],
-  "binary": {
-    "module_name": "bcrypt_lib",
-    "module_path": "./lib/binding/napi-v{napi_build_version}",
-    "package_name": "{module_name}-v{version}-napi-v{napi_build_version}-{platform}-{arch}-{libc}.tar.gz",
-    "host": "https://github.com",
-    "remote_path": "kelektiv/node.bcrypt.js/releases/download/v{version}",
-    "napi_versions": [
-      3
-    ]
-  }
+  ]
 }

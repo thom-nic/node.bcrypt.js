@@ -1,4 +1,7 @@
 {
+"variables": {
+    "module_name":"bcrypt_lib",
+  },
   'targets': [
     {
       'target_name': 'bcrypt_lib',
@@ -42,16 +45,5 @@
         }],
       ],
     },
-    {
-      "target_name": "action_after_build",
-      "type": "none",
-      "dependencies": [ "<(module_name)" ],
-      "copies": [
-        {
-          "files": [ "<(PRODUCT_DIR)/<(module_name).node" ],
-          "destination": "<(module_path)"
-        }
-      ]
-    }
   ]
 }
