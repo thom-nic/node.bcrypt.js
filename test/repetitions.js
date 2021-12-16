@@ -9,18 +9,11 @@ module.exports = {
     for (var i = 0; i < EXPECTED; i++) {
       bcrypt.genSalt(10, function(err, salt) {
         assert.equals(29, salt.length, "Salt ("+salt+") isn't the correct length. It is: " + salt.length);
-        n++;
+        if (++n == EXPECTED) {
+            assert.done();
+        }
       });
     }
-
-    function checkVal() {
-        if (n == EXPECTED) {
-          assert.done();
-        } else {
-          setTimeout(checkVal, 100);
-        }
-    }
-    setTimeout(checkVal, 100);
   },
   test_hash_length: function(assert) {
     assert.expect(EXPECTED);
@@ -29,18 +22,11 @@ module.exports = {
     for (var i = 0; i < EXPECTED; i++) {
       bcrypt.hash('test', SALT, function(err, crypted) {
         assert.equals(60, crypted.length, "Encrypted ("+crypted+") isn't the correct length. It is: " + crypted.length);
-        n++;
+        if (++n == EXPECTED) {
+            assert.done();
+        }
       });
     }
-
-    function checkVal() {
-      if (n == EXPECTED) {
-        assert.done();
-      } else {
-        setTimeout(checkVal, 100);
-      }
-    }
-    setTimeout(checkVal, 100);
   },
   test_compare: function(assert) {
     assert.expect(EXPECTED);
@@ -49,18 +35,11 @@ module.exports = {
     for (var i = 0; i < EXPECTED; i++) {
       bcrypt.compare('test', HASH, function(err, match) {
         assert.equal(true, match, "No match.");
-        n++;
+        if (++n == EXPECTED) {
+            assert.done();
+        }
       });
     }
-
-    function checkVal() {
-      if (n == EXPECTED) {
-        assert.done();
-      } else {
-        setTimeout(checkVal, 100);
-      }
-    }
-    setTimeout(checkVal, 100);
   },
   test_hash_and_compare: function(assert) {
     assert.expect((EXPECTED-1)*3);
@@ -87,29 +66,21 @@ module.exports = {
           if (idx >= (EXPECTED-1)) {
             good_done = true;
           }
-        });
 
-        bcrypt.compare('bad' + password, hash, function(err, res) {
-          //if (err) throw err;
-          assert.ok(!res);
-          if (idx >= (EXPECTED-1)) {
-            bad_done = true;
-          }
-        });
-
-        if (idx < ((EXPECTED)-1)) {
-          next();
-        } else {
-          function checkDone() {
-            if (idx >= (EXPECTED-1) && good_done && bad_done) {
-              assert.done();
-            } else {
-              setTimeout(checkDone, 100);
+          bcrypt.compare('bad' + password, hash, function(err, res) {
+            //if (err) throw err;
+            assert.ok(!res);
+            if (idx >= (EXPECTED-1)) {
+              bad_done = true;
             }
-          }
 
-          setTimeout(checkDone, 100);
-        }
+            if (idx < ((EXPECTED)-1)) {
+                next();
+              } else {
+                assert.done();
+              }
+          });
+        });
       });
     }
 
