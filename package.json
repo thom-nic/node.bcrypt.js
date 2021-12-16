@@ -27,7 +27,7 @@
   "scripts": {
     "test": "npx nodeunit test/*.js",
     "install": "node-gyp-build",
-    "build": "prebuildify --napi"
+    "build": "prebuildify --napi --tag-libc --strip"
   },
   "dependencies": {
     "node-addon-api": "^3.1.0",
