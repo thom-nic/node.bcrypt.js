@@ -1,5 +1,5 @@
 {
-  "name": "bcrypt",
+  "name": "@voltserver/bcrypt",
   "description": "A bcrypt library for NodeJS.",
   "keywords": [
     "bcrypt",
@@ -18,11 +18,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kelektiv/node.bcrypt.js.git"
+    "url": "https://github.com/voltserver/node.bcrypt.js.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kelektiv/node.bcrypt.js/issues"
+    "url": "https://github.com/voltserver/node.bcrypt.js/issues"
   },
   "scripts": {
     "test": "npx nodeunit test/*.js",
